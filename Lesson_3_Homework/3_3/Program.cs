@@ -13,3 +13,5 @@ void Cube(int num)
 Console.WriteLine("Введите число: ");
 int num = int.Parse(Console.ReadLine());
 Cube(num);
+
+Console.WriteLine();
