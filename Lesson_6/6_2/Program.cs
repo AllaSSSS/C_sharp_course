@@ -1,15 +1,15 @@
 ﻿// Десятичное число в двоичное.
 
-void Binary(int number)
+void DecToBinary(int number)
 {
-    string Dec = "";
+    string Binary = "";
     while (number > 0)
     {
-        Dec = number % 2 + Dec;
+        Binary = number % 2 + Binary;
         number /= 2;
     }
-    Console.WriteLine(Dec);
+    Console.WriteLine(Binary);
 }
 
-Binary(45);
+DecToBinary(10);
 
