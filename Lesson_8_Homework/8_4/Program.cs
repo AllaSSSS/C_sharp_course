@@ -30,10 +30,10 @@ void Print2DArray(int[,] array)
     Console.WriteLine();
 }
 
-(int, int) FindSmallest(int[,] array)
+int[] FindSmallest(int[,] array)
 {
     int smallest = array[0, 0];
-    (int, int) position = (0, 0);
+    int[] position = {0, 0};
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
@@ -41,39 +41,40 @@ void Print2DArray(int[,] array)
             if (array[i, j] < smallest)
             {
                 smallest = array[i, j];
-                position = (i, j);
+                position[0] = i;
+                position[1] = j;
             }
         }
     }
-    Console.WriteLine($"Наименьший элемент массива равен {smallest}");
     return position;
 }
 
-void PrintNewArray (int[,] array, int rowToRemove, int colToRemove)
+int[,] ModifyArray (int[,] array, int rowToRemove, int colToRemove)
 {
-    int rows = array.GetLength(0);
-    int columns = array.GetLength(1);
+    int rows = array.GetLength(0) - 1;
+    int columns = array.GetLength(1) - 1;
+    int[,] newArray = new int[rows, columns]; 
 
     for (int i = 0; i < rows; i++)
     {
-        if(i == rowToRemove) continue;
+        int i1 = i;
+        if(i >= rowToRemove) i1++;
         for (int j = 0; j < columns; j++)
         {
-            if(j == colToRemove) continue;
-            Console.Write($" {array[i, j], 2} ");
+            int j1 = j;
+            if(j >= colToRemove) j1++;
+            newArray[i, j] = array[i1, j1];
         }
-        Console.WriteLine();
     }
-    Console.WriteLine();
+    return newArray;
 }
 
 int[,] array = Fill2DArray(4, 4, 1, 100);
 Print2DArray(array);
 
-
-(int rowToRemove, int colToRemove) = FindSmallest(array);
-
 Console.WriteLine();
 
-PrintNewArray(array, rowToRemove, colToRemove);
+int[] position = FindSmallest(array);
 
+int[,] newArray = ModifyArray(array, position[0], position[1]);
+Print2DArray(newArray);
