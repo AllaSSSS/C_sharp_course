@@ -10,8 +10,9 @@ int N = int.Parse(Console.ReadLine());
 void AllEvens(int M, int N)
 {
     if (N % 2 == 1) N = N - 1;
-    else if (N < M) return; 
-    else AllEvens(M, N - 2);
+       
+    if (N < M) return;
+    AllEvens(M, N - 2);
     Console.Write($"{N}, ");
 }
 AllEvens(M, N);
